@@ -49,6 +49,10 @@ def get_block(size):
     path = join("assets", "Terrain", "Terrain.png")
     image = pygame.image.load(path).convert_alpha()
     surface = pygame.Surface((size, size), pygame.SRCALPHA, 32)
-    rect = pygame.Rect(96, 0, size, size)
+    STONE_FRAME_X, STONE_FRAME_Y = 0, 0
+    WOOD_FRAME_X, WOOD_FRAME_Y = 0, 64
+    GRASS_X, GRASS_Y = 96, 0
+    POLLICHED_STONE_X, POLLICHED_STONE_Y = 192, 0
+    rect = pygame.Rect(STONE_FRAME_X, STONE_FRAME_Y, size, size)
     surface.blit(image, (0, 0), rect)
     return pygame.transform.scale2x(surface)

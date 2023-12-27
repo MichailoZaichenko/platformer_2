@@ -1,5 +1,6 @@
 import pygame
 from load_levl import load_sprite_sheets
+from particles import ParticleEffect
 
 class Player(pygame.sprite.Sprite):
     COLOR = (255, 0, 0)
@@ -19,6 +20,13 @@ class Player(pygame.sprite.Sprite):
         self.jump_count = 0
         self.hit = False
         self.hit_count = 0
+        self.dust_sprite = pygame.sprite.GroupSingle()
+    
+    # Todo add particles
+    def create_jump_particles(self, pos):
+        jump_particle_sprite = ParticleEffect(pos, 'jump')
+        jump_particle_sprite.image.set_colorkey((0, 0, 0))
+        self.dust_sprite.add(jump_particle_sprite)
 
     def jump(self):
         self.y_vel = -self.GRAVITY * 8
@@ -26,6 +34,7 @@ class Player(pygame.sprite.Sprite):
         self.jump_count += 1
         if self.jump_count == 1:
             self.fall_count = 0
+        self.create_jump_particles(self.rect.center)
 
     def move(self, dx, dy):
         self.rect.x += dx

@@ -83,7 +83,7 @@ def handle_move(player, objects):
     for obj in to_check:
         if obj and obj.name == "fire":
             player.make_hit()
-
+            
 
 def main(window):
     clock = pygame.time.Clock()
